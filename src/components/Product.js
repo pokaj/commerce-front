@@ -4,6 +4,8 @@ import MidSection from "./MidSection";
 import { useParams } from "react-router-dom";
 import { fetchProduct } from "../service/ProductService";
 import Footer from "./Footer";
+import productImage from '../img/1.jpeg'
+
 
 export default function Product() {
     const { id } = useParams();
@@ -27,11 +29,10 @@ export default function Product() {
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
                 <div style={{ display: 'flex', maxWidth: '1000px', margin: '0 auto' }}>
                     <div style={{ flex: 1 }}>
-                        <img
-                            className="card-img-top"
-                            src="https://dummyimage.com/800x600/dee2e6/6c757d.jpg"  // Adjust the image size here
-                            alt="product image"
-                            style={{ width: '100%', height: 'auto' }}
+                        <img className="card-img-top"
+                             src={productImage}
+                             alt="Product Image"
+                             height="400px"
                         />
                     </div>
                     <div style={{ flex: 1 }}>
