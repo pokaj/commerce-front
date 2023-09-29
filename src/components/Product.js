@@ -5,21 +5,36 @@ import { useParams } from "react-router-dom";
 import { fetchProduct } from "../service/ProductService";
 import Footer from "./Footer";
 import productImage from '../img/1.jpeg'
+import {purchaseItem} from "../service/CartService";
+import {errorMessage, successMessage} from "../ToolBox";
 
 
 export default function Product() {
     const { id } = useParams();
     const [product, setProduct] = useState({});
+    const [user, setUser] = useState({})
+
 
     const addToCart = (product) => {
-        console.log(product)
+        let cartItems = JSON.parse(localStorage.getItem('cart'))
+        if (!cartItems) {
+            cartItems = [];
+        }
+        cartItems.push(product)
+        localStorage.setItem('cart', JSON.stringify(cartItems))
+        purchaseItem(user.id, product.id).then(res => {
+            if (res.code === 0) {
+                successMessage("Item added to cart");
+            } else {
+                errorMessage(res.msg);
+            }
+        });
     }
 
     useEffect(() => {
-        fetchProduct(id).then((res) => {
-            console.log(res);
-            setProduct(res.data);
-        });
+        fetchProduct(id).then((res) => {setProduct(res.data);});
+        setUser(JSON.parse(localStorage.getItem('user')))
+
     }, [id]);
 
     return (
