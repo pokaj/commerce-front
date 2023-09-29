@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.finger:hover {
+  cursor: pointer;
+}
+
+.move{
+ margin-left: 10px;
+}
+
+.moveCenter{
+  margin-left: 400px;
+  margin-bottom: 100px;
+}
+
